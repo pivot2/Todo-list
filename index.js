@@ -4,7 +4,7 @@ var app=express();
 app.use(express.static(__dirname + "/public"));
 app.get('/',(req,res)=>
   {
-    res.redirect('/home.html');
+    res.redirect('/index.html');
   });
 var server = app.listen(port, function() {
     console.log('listening for requests on port 3000');

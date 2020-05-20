@@ -1,8 +1,12 @@
 var input = document.getElementById("input-work");
 var list  = document.getElementById("list");
-var CHECK="far fa-check-square";
-var UNCHECKED="far fa-square";
+var btn= document.getElementById("btn-add");
 //var btn=document.getElementById
+window.addEventListener("load",()=>{
+    var tasks=localStorage.task;
+    if (tasks)
+        list.innerHTML=tasks;
+})
 function addTodo()
 {
     var todo=input.value;
@@ -23,6 +27,7 @@ function addTodo()
     {
         input.placeholder="Please don't leave me blank";
     }
+    localStorage.task=list.innerHTML;
 }
 list.addEventListener("click",function(event)
 {
@@ -30,7 +35,8 @@ list.addEventListener("click",function(event)
     const elementJob=element.attributes.job.value;
     if (elementJob=="delete")
     {
-        element.parentNode.remove();
+        if (confirm("Are you sure you want to delete this work?"))
+            element.parentNode.remove();
     }
     else 
     if (elementJob=="complete")
@@ -48,6 +54,13 @@ list.addEventListener("click",function(event)
             element.parentNode.querySelector(".text").classList.add("lineThrough");
         }
     }
+    localStorage.task=list.innerHTML;
 })
+input.addEventListener("keyup",event=>{
+    if (event.keyCode==13)  addTodo();
+})
+
+
+
 
 
